@@ -1,0 +1,31 @@
+[
+    {
+      "id": 1,
+      "title": "Final Project Due",
+      "description": "The goal here is to propose, design, and implement a fully functional full-stack application of your choice using React, Express, MongoDB, and Node.js. The application must demonstrate your professional skills and mastery of the topics of this class.  The delivered product should be something portfolio-worthy that you are proud of.",
+      "location": "NA",
+      "start_date": "1972-03-24T00:00:00.000Z",
+      "end_date": "1972-03-24T00:00:00.000Z",
+      "full_day": "No",
+      "full_day_date": "1972-03-24T00:00:00.000Z",
+      "link": "https://www.figma.com/file/0MT22AEcAYdTn2BqVQreOo/SarahBell_FinalProjectProposal?node-id=0%3A1",
+      "notes": "more notes!",
+      "updated_at": "1972-03-24T00:00:00.000Z",
+      "created_by": "sarahBell"
+    },
+    {
+      "id": 2,
+      "title": "Mom's Birthday",
+      "description": "Mom is turning 60.",
+      "location": "NA",
+      "start_date": "1972-03-24T00:00:00.000Z",
+      "end_date": "1972-03-24T00:00:00.000Z",
+      "full_day": "No",
+      "full_day_date": "1972-03-24T00:00:00.000Z",
+      "link": "NA",
+      "notes": "Take her a smoothie!",
+      "updated_at": "1972-03-24T00:00:00.000Z",
+      "created_by": "Sarah"
+    }
+]
+

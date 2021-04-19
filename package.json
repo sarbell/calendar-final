@@ -7,7 +7,8 @@
   "keywords": [],
   "scripts": {
     "deploy": "npx webpack",
-    "start": "npx webpack-dev-server"
+    "start": "npx webpack-dev-server",
+    "server": "nodemon server.js --exec babel-node"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
@@ -29,7 +30,28 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "@babel/node": "^7.13.13",
+    "@popperjs/core": "^2.9.1",
+    "bootstrap": "^5.0.0-beta2",
+    "cookie-parser": "^1.4.5",
+    "date-fns": "^2.19.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "formik": "^2.2.6",
+    "http-errors": "^1.8.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.4",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.7",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-cookie": "^4.0.3",
+    "react-datepicker": "^3.6.0",
+    "react-dom": "^16.13.1",
+    "react-icons": "^4.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-toastify": "^7.0.3",
+    "yup": "^0.32.9"
   }
 }
