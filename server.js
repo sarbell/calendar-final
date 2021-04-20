@@ -20,18 +20,24 @@ app.use(express.urlencoded({extended: false}))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
+// Authentication
+import passport from 'passport'
+import {strategy} from './src/javascripts/config/passport'
+passport.use(strategy)
+app.use(passport.initialize())
+
 // Routing
 import {configureRoutes} from './src/javascripts/config/routes'
 configureRoutes(app)
 
 // Error Handling
 app.use(function(req, res, next){
-    next(createError(404))
+    res.render('layout', {title: 'Error Page', content: 'error', err: createError(404)})
 })
 
 app.use(function(err, req, res, next){
     res.status(err.status || 500)
-    res.render(err)
+    res.render('layout', {title: 'Error Page', content: 'error', err: err })
 })
 
 
@@ -39,7 +45,7 @@ app.use(function(err, req, res, next){
 let http = require('http')
 let server = http.createServer(app)
 server.listen(process.env.PORT || '8080')
-server.on('error', err => {
+server.on('layout', err => {
     throw err
 })
 

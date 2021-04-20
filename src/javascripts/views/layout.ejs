@@ -8,19 +8,24 @@
   <title>Daily Calendar</title>
 </head>
 
-<body>
+<body class="bg-light">
     <%- include("partials/_nav") %>
-    <div class="container">
-        <% if (locals.header === undefined || header) {%>
-            <%- include("partials/_header") %>
-        <% } %>
-        <% if (content) { %>
-            <%- include(content) %>
-        <% } else { %>
-            <p>Nothing to display.</p>
-        <% } %>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col">
+                <% if (locals.header === undefined || header) {%>
+                    <%- include("partials/_header") %>
+                <% } %>
+                <% if (content) { %>
+                    <%- include(content) %>
+                <% } else { %>
+                    <p>Nothing to display.</p>
+                <% } %>
+            </div>
+        </div>
     </div>
     <%- include("partials/_footer") %>
-  <script src="/javascripts/main.js"></script>
+    
+    <script src="/javascripts/main.js"></script>
 </body>
 </html>
