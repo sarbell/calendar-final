@@ -1,12 +1,13 @@
 import React from 'react'
 import EventList from './Event-list'
-import { FaCalendar, FaCalendarAlt } from 'react-icons/fa'
+import CalendarRouter from './Calendar-router'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 export default function Main(){
     return (
         <Router>
-            <EventList/>
+            {/* <EventList/> */}
+            <CalendarRouter/>
         </Router>
     )
 }

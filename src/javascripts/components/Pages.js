@@ -10,7 +10,7 @@ export function ErrorNotFound(){
     )
 }
 
-export function WelcomeMessage(){
+export default function WelcomeMessage(){
     return (
         <div className="container">
             <div className="row">
@@ -19,7 +19,6 @@ export function WelcomeMessage(){
                     <h2 className="pb-4"> Please log in or sign up to add, edit, or delete events.</h2>
                     <button type="button" className="btn btn-info btn-lg px-5">Login</button>
                     <button type="button" className="btn btn-outline-info btn-lg px-5">Sign Up</button>
-
                 </div>
             </div>
         </div>

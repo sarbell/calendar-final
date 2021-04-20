@@ -25,8 +25,12 @@ li.nav-item, .nav-link{
     font-size: 1.3rem;
     font-weight: 500;
 }
-.logout{
+.logout, a{
     cursor: pointer;
+}
+a.loginLink{
+    font-weight: 600;
+    text-decoration:none;
 }
 
 .weekDayHeaders{
