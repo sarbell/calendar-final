@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { createContext, useEffect, useState, useContext } from 'react'
 import { format, getDate, getMonth, endOfMonth, lastDayOfMonth, startOfMonth } from 'date-fns'
+import { Redirect, Link, Route, Switch, useHistory } from 'react-router-dom'
+import { CalendarContext } from './Calendar-router'
+import { useCookies } from 'react-cookie'
+import { FaPlus } from "react-icons/fa";
+
+
 
 export default function Calendar(){
-     let todaysDate = format(new Date(), 'MM/dd/yyyy')
+    let {events, setEvents, authenticated, setAuthenticated} = useContext(CalendarContext)
+    const history = useHistory()
+
+    let todaysDate = () => {
+        let today = new Date()
+        today = format(today, 'd')
+         return today
+     }
 
      const month = format( new Date(), 'MMMM')
      const year = format( new Date(), 'yyyy')
@@ -45,8 +58,9 @@ export default function Calendar(){
     // fill in how many days
     let numericDays = []
     for(let i = 1; i <= Number(endDayOfMonth); i++){
+        let today = i == todaysDate() ? 'today' : ""
         numericDays.push(
-        <div  className="col border dayBox">
+        <div  className={`col border dayBox ${today}`}>
                 <p key={i}>{i}</p>
             </div>
        )
@@ -58,7 +72,7 @@ export default function Calendar(){
     
     // add blank spots at the end of the calendar
     // let emptyEnd = []
-    console.log(allCalendarSpaces.length)
+    // console.log(allCalendarSpaces.length)
     for(let i = 0; i <allCalendarSpaces.length; i++){
         if(allCalendarSpaces.length % 7 != 0){
             allCalendarSpaces.push(
@@ -87,7 +101,7 @@ export default function Calendar(){
             weeks.push(days)
         }
     })
-    console.log(allCalendarSpaces)
+    // console.log(allCalendarSpaces)
 
     let calendarDays = weeks.map((d, i) => {
         return (
@@ -101,8 +115,11 @@ export default function Calendar(){
     return (
         <div className="container">
             <div className="row py-5">
-                <div className="col">
+                <div className="col-8">
                     <h2>{month} {year}</h2>                     
+                </div>
+                <div className="col-4 text-end">
+                    <Link className="btn btn-info" to='/calendar/new'><FaPlus />Add New Event</Link>                      
                 </div>
             </div>
             <div className="row">

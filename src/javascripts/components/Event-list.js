@@ -19,21 +19,23 @@ export default function EventList(){
             <>
                 {!authenticated
                     ? <WelcomeMessage />
-                    : <div></div>
+                    : <div>
+                    </div>
                 }
-                <div className="container">
-                    <div className="row  mt-3">
-                        <div className="col-2">
-                            <Link className="btn btn-info" to={'/events/new'}>Add New Event</Link>                    
+                <Calendar />
+                <div className="container pt-5">
+                    <div className="row">
+                        <div className="col">
+                            <h2>Upcoming Events</h2>
+                            <hr className="mb-3"></hr>
+                                {
+                                events.map(e => {
+                                    return <CalendarEvent key={e.id} event={e}/>
+                                })
+                                }
                         </div>
                     </div>
-                </div>
-                <div className="container project-list">
-                    {
-                    events.map(e => {
-                        return <CalendarEvent key={e.id} event={e}/>
-                    })
-                    }
+            
                 </div>
             </>
         )

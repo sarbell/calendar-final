@@ -44,8 +44,6 @@ export default function EventForm(){
             title: "",
             description: "",
             location: "",
-            full_day: "",
-            full_day_date: "",
             begin_date: "",
             finish_date: "",
             link: "",
@@ -102,27 +100,6 @@ export default function EventForm(){
           <div className="input-group has-validation">
             <input className={`form-control ${errors.location ? 'is-invalid' : ''}`} type="text" id="location" name="location" value={values.location} onChange={handleChange}/>
             <ValidationMessage message={errors.location}/>
-          </div>
-        </div>
-
-        <div className="field mb-3">
-          <label htmlFor="type" className="form-label">Is this a full day event?</label>
-          <div className="input-group has-validation is-invalid">
-            <select className={`form-control ${errors.full_day ? 'is-invalid' : ''}`} id="full_day" name="full_day" value={values.full_day} onChange={handleChange}>
-              <option value="">not selected</option>
-              <option value="no">No</option>
-              <option value="yes">Yes</option>
-            </select>
-            <ValidationMessage message={errors.full_day}/>
-          </div>
-        </div>
-        <div className="field mb-3">
-          <label htmlFor="full_day_date" className="form-label">Full day date</label>
-          <div className="input-group has-validation">
-            <div className={errors.full_day_date ? 'is-invalid' : ''}>
-              <DatePicker className={`form-control ${errors.full_day_date ? 'is-invalid' : ''}`} id="full_day_date" name="full_day_date" selected={values.full_day_date} onChange={date => setFieldValue('full_day_date', date)}/>
-            </div>
-            <ValidationMessage message={errors.full_day_date}/>
           </div>
         </div>
 
