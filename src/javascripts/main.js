@@ -11,10 +11,11 @@ import App from './components/App'
 import {CalendarRouter} from './components/Calendar-router'
 
 import {BrowserRouter as Router } from 'react-router-dom'
-import ContactForm from '../javascripts/components/Contact'
+import {ContactForm} from '../javascripts/components/Contact'
 import LoginForm from '../javascripts/components/Login'
 import SignupForm from '../javascripts/components/Signup'
 import Logout from '../javascripts/components/Logout'
+
 
 
 
@@ -29,11 +30,6 @@ if(document.getElementById('main')){
 else if(document.getElementById('login')){
     ReactDOM.render(<LoginForm/>, document.getElementById('login'))
 }
-
-if(document.querySelector('#_sign_user_out')){
-    document.querySelector('#_sign_user_out').onclick = (e) => {
-        let el = document.createElement('div')
-        document.body.appendChild(el)
-        ReactDOM.render(<Logout/>, el)
-    }
+else if(document.getElementById('logout')){
+    ReactDOM.render(<Logout/>, document.getElementById('logout'))
 }

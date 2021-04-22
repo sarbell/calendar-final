@@ -1,6 +1,5 @@
 import { useFormik } from 'formik'
 import React from 'react'
-import { useParams, useHistory } from 'react-router-dom'
 import * as yup from 'yup'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -18,7 +17,7 @@ const validationSchema = yup.object({
   message: yup.string().required()
 })
 
-export default function ContactForm() {
+export function ContactForm() {  
   const { handleSubmit, handleChange, values, errors, setFieldValue } = useFormik({
     initialValues: {
       name: "",
@@ -37,18 +36,20 @@ export default function ContactForm() {
         }).then(()=> {
             toast('Sucessfully Submitted!', {
                 onClose: () => {
-                    document.location = "/"
+                    document.location = "/calendar"
                 }
             })
         }).catch((error) => {
             toast('Failed to submit!', {
                 onClose: () => {
-                    document.location = "/"
+                    document.location = "/calendar"
                 }
             })
         })
     }
   })
+  
+
 
   return (
     <>
@@ -77,7 +78,7 @@ export default function ContactForm() {
         </div>
         <div className="mb-3">
           <button type="submit" className="btn btn-info text-light me-2">Submit <FaPaperPlane className="text-light ml-2"></FaPaperPlane></button>
-          <button type="button" className="btn btn-secondary" onClick={()=> history.push(`/`)}>Cancel</button>
+          <button type="button" className="btn btn-secondary" onClick={()=> document.location = "/calendar"} >Cancel</button>
         </div>
       </form >
     </>

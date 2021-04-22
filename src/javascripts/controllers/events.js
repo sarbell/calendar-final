@@ -1,4 +1,6 @@
 import { Event } from '../models/event'
+import { getCurrentUser } from '../config/routes'
+import { User } from '../models/user'
 
 // /api/events
 export const allEventsAPI = (req, res, next) => {
@@ -31,6 +33,7 @@ export const createEventAPI = (req, res, next) => {
     let event = new Event(req.body)
     event.added_at = new Date()
     event.updated_at = new Date()
+    event.created_by = new User(getCurrentUser(req))
     event.save(err => {
         if(err){
             res.json({success: false, message: "Event creation failed"})

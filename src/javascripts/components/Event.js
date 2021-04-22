@@ -4,6 +4,8 @@ import { CalendarContext } from './Calendar-router'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { FaPencilAlt, FaTrashAlt} from 'react-icons/fa'
+import { format, getDate, getMonth, endOfMonth, lastDayOfMonth, startOfMonth } from 'date-fns'
+
 
 
 export default function Event(){
@@ -22,13 +24,13 @@ export default function Event(){
         }).then(()=> {
           toast('Sucessfully Submitted!', {
               onClose: () => {
-                  document.location = "/events"
+                  document.location = "/"
               }
           })
         }).catch((error) => {
           toast('Failed to submit!', {
               onClose: () => {
-                  document.location = "/events"
+                  document.location = "/"
               }
           })
         })
@@ -67,9 +69,36 @@ export default function Event(){
                             <button type="button" className="btn btn-secondary me-2 text-right" onClick={()=> history.push(`/calendar/`) }>Back to Calendar</button>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row pt-3">
                         <div className="col">
-                            <p>{e.description}</p>
+                            {format(e.start_date, 'MMMM dd, yyyy') == format(e.end_date, 'MMMM dd, yyyy') 
+                                ?
+                                <h3>{format(e.end_date, 'MMMM dd, yyyy')}</h3>
+                                :
+                                <h3>{format(e.start_date, 'MMMM dd')} - {format(e.end_date, 'MMMM dd, yyyy')} </h3>
+
+                            }
+                                
+                            {e.description ?
+                            <p><strong>Description: </strong>{e.description}</p>
+                            :
+                            <></>
+                            }
+                            {e.location ?
+                            <p><strong>Location: </strong>{e.location}</p>
+                            :
+                            <></>
+                            }
+                            {e.link ?
+                            <p><strong>Link: </strong> <a href={e.link}>{e.link}</a></p>
+                            :
+                            <></>
+                            }
+                            {e.link ?
+                            <p><strong>Notes: </strong>{e.notes}</p>
+                            :
+                            <></>
+                            }
                         </div>
                     </div>
                 </div>

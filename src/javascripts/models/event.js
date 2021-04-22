@@ -9,7 +9,7 @@ let eventSchema = new Schema({
     start_date: Date,
     end_date: Date,
     link: String,
-    Notes: String,
+    notes: String,
     updated_at: Date,
     added_at: Date,
     created_by: { type: Schema.Types.ObjectId, ref: 'User' }

@@ -1,9 +1,11 @@
-import React, { createContext, useEffect, useState, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { format, getDate, getMonth, endOfMonth, lastDayOfMonth, startOfMonth } from 'date-fns'
 import { Redirect, Link, Route, Switch, useHistory } from 'react-router-dom'
 import { CalendarContext } from './Calendar-router'
 import { useCookies } from 'react-cookie'
 import { FaPlus } from "react-icons/fa";
+import CalendarEvent from "./Calendar-event"
+import { setDayWithOptions } from 'date-fns/fp'
 
 
 
@@ -17,6 +19,17 @@ export default function Calendar(){
          return today
      }
 
+     let eventsInMonth = []
+    let getEventsInMonth = () => {
+        events.map(e => {
+            if(format(e.start_date, 'MMMM') == month) {
+                eventsInMonth.push(e)
+            }
+        })
+        return eventsInMonth
+    }
+    // console.log(eventsInMonth)
+ 
      const month = format( new Date(), 'MMMM')
      const year = format( new Date(), 'yyyy')
     //  let firstDayOfMonth = startOfMonth(new Date())
@@ -55,17 +68,44 @@ export default function Calendar(){
         }
     }
 
-    // fill in how many days
+
+  
+    events.map(e => {
+        if(format(e.start_date, 'MMMM') == month) {
+            eventsInMonth.push(e)
+        }
+    })
+    eventsInMonth = getEventsInMonth()
+    // console.log(eventsInMonth)
+
+    //fill in how many days
     let numericDays = []
+    let calendarEvent = ''
     for(let i = 1; i <= Number(endDayOfMonth); i++){
         let today = i == todaysDate() ? 'today' : ""
+
+
+        let eve = eventsInMonth.find(e => format(e.start_date, 'd') == i)
+        // console.log(eve)
+        if(eve == undefined){
+            calendarEvent = ""
+        }else{
+            calendarEvent = "calendarEvent"
+        }
+
         numericDays.push(
-        <div  className={`col border dayBox ${today}`}>
-                <p key={i}>{i}</p>
+            <div  className={`col border dayBox ${today}`}>
+                    <p key={i}>{i}</p>
+                    {eve == undefined ?
+                        <></>
+                        :
+                    <div className={`btn alert-success ${calendarEvent}`} onClick={() => history.push(`/calendar/${eve.id}/event`)}>
+                        {eve.title}
+                    </div>
+                    }
             </div>
-       )
+        )
     }
-    // console.log(numericDays)
 
     // Need to combine so the blanks will be at the top
     let allCalendarSpaces = [...empty, ...numericDays]
@@ -110,6 +150,7 @@ export default function Calendar(){
             </div>
         )
     })
+
      
 
     return (

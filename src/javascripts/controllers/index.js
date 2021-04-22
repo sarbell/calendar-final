@@ -14,6 +14,10 @@ export const loginPage = (req, res, next) => {
     res.render('layout', {content: 'login', title: 'Log In'})
 }
 
+export const logoutPage = (req, res, next) => {
+    res.render('layout', {content: 'logout', title: ''})
+}
+
 export const signupPage = (req, res, next) => {
     res.render('layout', {content: 'signup', title: 'Sign Up'})
 }

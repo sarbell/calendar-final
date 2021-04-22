@@ -3,7 +3,7 @@ import Event from './Event'
 import { Redirect, Link, Route, Switch, useHistory } from 'react-router-dom'
 import { About, ErrorNotFound } from '../components/Pages'
 import Calendar from '../components/Calendar'
-import EventForm from './Event-form'
+import {EventForm} from './Event-form'
 import { useCookies } from 'react-cookie'
 import EventList from '../components/Event-list'
 

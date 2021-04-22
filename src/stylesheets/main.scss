@@ -43,6 +43,7 @@ a.loginLink{
     font-size: 1.1rem;
     height: 10rem;
     text-align: right;
+    padding-left: .5rem;
 }
 .today p{
     font-weight: 600;
@@ -52,4 +53,17 @@ a.loginLink{
 .today{
     // background-color: rgba(13, 202, 240, .2);
     border: .2rem  solid rgb(13, 202, 240) !important;
+}
+
+.calendarEvent{
+    width:10rem;
+    text-align: left;
+    font-size: 1rem;
+    min-width: 5rem;
+    border-radius: 0;
+    padding:0;
+}
+
+.welcome{
+    border-radius: 0;
 }

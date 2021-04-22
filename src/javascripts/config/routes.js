@@ -1,6 +1,5 @@
 import express from 'express'
-
-import {contactPage, indexPage, aboutPage, loginPage, signupPage} from '../controllers/index'
+import {contactPage, indexPage, aboutPage, loginPage, signupPage, logoutPage} from '../controllers/index'
 import {allEventsAPI, oneEventAPI, createEventAPI, updateEventAPI, deleteEventAPI} from '../controllers/events'
 import {contactAPI} from '../controllers/contacts'
 import {signUpUserAPI, signUserInAPI } from '../controllers/users'
@@ -49,18 +48,20 @@ export function configureRoutes(app){
     router.get('/contact', contactPage)
     router.get('/login', loginPage)
     router.get('/signup', signupPage)
+    router.get('/logout', requireLogIn, logoutPage)
+    
 
     router.get('/login', indexPage)
     router.get('/signup', indexPage)
 
     // Events API
     router.get('/api/events', allEventsAPI)
-    router.get('/api/events', allEventsAPI )
+    // router.get('/api/events', allEventsAPI )
     router.get('/api/events/:id', oneEventAPI )
     router.post('/api/events', requireLogIn, createEventAPI )
     router.put('/api/events/:id', requireLogIn, updateEventAPI )
     router.delete('/api/events/:id', requireLogIn, deleteEventAPI )
-
+    
     // Users
     router.post('/api/users/signup', signUpUserAPI)
     router.post('/api/users/signin', signUserInAPI)

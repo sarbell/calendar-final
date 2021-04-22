@@ -1,7 +1,7 @@
+import { useFormik } from 'formik'
 import React, { useContext } from 'react'
 import { useHistory, useParams } from 'react-router'
 import { CalendarContext } from './Calendar-router'
-import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -9,38 +9,35 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
 toast.configure()
-
 function ValidationMessage({message}){
   return <div className="invalid-feedback">{message}</div>
 }
 
 const validationSchema = yup.object({
-    title: yup.string().required(),
+    title: yup.string().required("Title is required!"),
     description: yup.string(),
     location: yup.string(),
-    full_day: yup.string().required(),
-    full_day_date: yup.date(),
-    begin_date: yup.date().required(),
-    finish_date: yup.date().required(),
+    start_date: yup.date().required("Start date is required!"),
+    end_date: yup.date().required("End date is required!"),
     link: yup.string().url(),
     notes: yup.string(),
-  })
+})
 
-export default function EventForm(){
-    let {events, setEvents, authenticated, setAuthenticated} = useContext(CalendarContext)
-    const history = useHistory()
-    let {eid} = useParams()
+export function EventForm(){
+  let {events, setEvents, authenticated, setAuthenticated} = useContext(CalendarContext)
+  const history = useHistory()
+  let {eid} = useParams()
 
-    if(!authenticated){
-        document.location = '/login'
-        return <></>
-      } 
+  if(!authenticated){
+      document.location = '/login'
+      return <></>
+    } 
 
-    let event = eid ? events.find(e => e.id == e.id) : {}
+    let event = eid ? events.find(e => e.id == eid) : {}
     let is_new = eid === undefined
 
-    let {handleSubmit, handleChange, values, errors, setFieldValue} = useFormik({
-        initialValues: is_new ? {
+    const {handleSubmit, handleChange, values, errors, setFieldValue} = useFormik({
+      initialValues: is_new ? {
             title: "",
             description: "",
             location: "",
@@ -71,10 +68,8 @@ export default function EventForm(){
                   }
               })
             })
-          }
+        }
     })
-
-
     return(
     <>
       <form className="needs-validation" onSubmit={handleSubmit}>
@@ -88,6 +83,7 @@ export default function EventForm(){
             <ValidationMessage message={errors.title}/>
           </div>
         </div>
+
         <div className="field mb-3">
           <label htmlFor="description" className="form-label">Description</label>
           <div className="input-group has-validation">
@@ -95,6 +91,7 @@ export default function EventForm(){
             <ValidationMessage message={errors.description}/>
           </div>
         </div>
+
         <div className="field mb-3">
           <label htmlFor="location" className="form-label">Location</label>
           <div className="input-group has-validation">

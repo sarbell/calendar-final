@@ -3,11 +3,12 @@ import Event from './Event'
 import { Redirect, Link, Route, Switch, useHistory } from 'react-router-dom'
 import { About, ErrorNotFound } from '../components/Pages'
 import Calendar from '../components/Calendar'
-import EventForm from './Event-form'
+import {EventForm} from './Event-form'
 import { CalendarContext } from './Calendar-router'
 import CalendarEvent from '../components/Calendar-event'
 import { useCookies } from 'react-cookie'
-import WelcomeMessage from '../components/Pages'
+import {WelcomeMessage} from '../components/Pages'
+
 
 
 
