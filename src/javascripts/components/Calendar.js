@@ -58,7 +58,7 @@ export default function Calendar(){
     for(let i = 0; i < weekdayNames.length; i ++){
         if(weekdayNames[i] !== firstDayOfMonth()){
             empty.push(
-                <div className="col border dayBox">
+                <div key={i.toExponential(8)} className="col border dayBox">
                     <p>{""}</p>
                 </div>
             )
@@ -75,7 +75,7 @@ export default function Calendar(){
             eventsInMonth.push(e)
         }
     })
-    eventsInMonth = getEventsInMonth()
+   eventsInMonth = getEventsInMonth()
     // console.log(eventsInMonth)
 
     //fill in how many days
@@ -83,7 +83,6 @@ export default function Calendar(){
     let calendarEvent = ''
     for(let i = 1; i <= Number(endDayOfMonth); i++){
         let today = i == todaysDate() ? 'today' : ""
-
 
         let eve = eventsInMonth.find(e => format(e.start_date, 'd') == i)
         // console.log(eve)
@@ -94,31 +93,29 @@ export default function Calendar(){
         }
 
         numericDays.push(
-            <div  className={`col border dayBox ${today}`}>
-                    <p key={i}>{i}</p>
-                    {eve == undefined ?
-                        <></>
-                        :
-                    <div className={`btn alert-success ${calendarEvent}`} onClick={() => history.push(`/calendar/${eve.id}/event`)}>
-                        {eve.title}
-                    </div>
+            <div  key={i} className={`col border dayBox ${today}`}>
+                    <p>{i}</p>
+                    {eve &&
+                        <div key={eve.id} className={`btn alert-success ${calendarEvent}`} onClick={() => history.push(`/calendar/${eve.id}/event`)}>
+                            {eve.title}
+                        </div>
                     }
             </div>
         )
     }
 
     // Need to combine so the blanks will be at the top
-    let allCalendarSpaces = [...empty, ...numericDays]
+   let allCalendarSpaces = [...empty, ...numericDays]
     
-    // add blank spots at the end of the calendar
-    // let emptyEnd = []
-    // console.log(allCalendarSpaces.length)
+   // add blank spots at the end of the calendar
+    //let emptyEnd = []
+    //console.log(allCalendarSpaces.length)
     for(let i = 0; i <allCalendarSpaces.length; i++){
         if(allCalendarSpaces.length % 7 != 0){
             allCalendarSpaces.push(
-                <div className="col border dayBox">
-                <p>{""}</p>
-            </div>
+                <div key={i} className="col border dayBox">
+                    <p>{""}</p>
+                </div>
             )
         }else{
             break
@@ -144,8 +141,10 @@ export default function Calendar(){
     // console.log(allCalendarSpaces)
 
     let calendarDays = weeks.map((d, i) => {
+        // console.log(d)
+        // console.log(i)
         return (
-            <div className="row hello">
+            <div key={i} className="row">
                 {d}
             </div>
         )
@@ -166,7 +165,7 @@ export default function Calendar(){
             <div className="row">
                 {weekdays}
             </div>
-            <div className="row">
+            <div className="container">
                 {calendarDays}
             </div>
             
